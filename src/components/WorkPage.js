@@ -8,7 +8,7 @@ import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 
 import { Work } from '../data/WorkData';
-// import Card from '../subComponents/Card';
+import Card from '../subComponents/Card';
 import { YinYang } from './AllSvgs';
 // import BigTitlte from '../subComponents/BigTitlte';
 
@@ -29,6 +29,25 @@ const WorkPage = () => {
    const ref = useRef(null);
    const yinyang = useRef(null);
 
+   useEffect(() => {
+      let element = ref.current;
+      console.log(yinyang.current);
+
+      const rotate = () => {
+         element.style.transform = `translateX(${-window.pageYOffset}px)`;
+
+         // en el inline se ve "style='transform: rotate(-572.675deg);'"
+         return (yinyang.current.style.transform =
+            'rotate(' + -window.pageYOffset + 'deg)');
+      };
+
+      window.addEventListener('scroll', rotate);
+
+      return () => {
+         window.removeEventListener('scroll', rotate);
+      };
+   }, []);
+
    return (
       <ThemeProvider theme={DarkTheme}>
          <Box>
@@ -36,7 +55,16 @@ const WorkPage = () => {
             <SocialIcons theme="dark" />
             <PowerButton />
 
-            <Main ref={ref}></Main>
+            <Main
+               ref={ref}
+               variants={container}
+               initial="hidden"
+               animate="show"
+            >
+               {Work.map(d => (
+                  <Card key={d.id} data={d} />
+               ))}
+            </Main>
 
             <Rotate ref={yinyang}>
                <YinYang width={80} height={80} fill={DarkTheme.text} />
@@ -76,67 +104,3 @@ const Rotate = styled.span`
    height: 80px;
    z-index: 1;
 `;
-
-/* 
-
-
-
-// Framer-motion Configuration
-const container = {
-
-  hidden: {opacity:0},
-  show: {
-    opacity:1,
-
-    transition:{
-      staggerChildren: 0.5,
-      duration: 0.5,
-    }
-  }
-
-}
-
-const WorkPage = () => {
-
-    
-
-
-
-    useEffect(() => {
-        let element = ref.current;
-       
-        
-        const rotate = () => {
-         
-         element.style.transform = `translateX(${-window.pageYOffset}px)`
-      
-         
-          return (yinyang.current.style.transform =
-            'rotate(' + -window.pageYOffset + 'deg)')
-        }
-    
-        window.addEventListener('scroll', rotate)
-        return () => {
-          window.removeEventListener('scroll', rotate);
-          
-        }
-      }, [])
-
-
-    return (
-        <ThemeProvider theme={DarkTheme}>
-<Box>
-
-<LogoComponent theme='dark'/>
-<SocialIcons theme='dark'/>
-<PowerButton />
-
-     <Main ref={ref}   variants={container} initial='hidden' animate='show'  >
-         {
-            Work.map( d => 
-            <Card key={d.id} data={d} />
-            )
-         }
-     </Main>
-
-*/
