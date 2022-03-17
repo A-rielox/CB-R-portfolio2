@@ -15,6 +15,7 @@ svg a react-component 28.45
 BlogPage 1.27.20 
 Anchore.js 1.49.00
 About 2.23.17
+workPage 2.33.45
 
 */
 
