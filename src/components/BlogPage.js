@@ -8,7 +8,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import BlogComponent from './BlogComponent';
-// import AnchorComponent from '../subComponents/Anchor'
+import AnchorComponent from '../subComponents/Anchor';
 // import BigTitle from "../subComponents/BigTitlte"
 
 // Framer-motion config
@@ -24,13 +24,13 @@ const container = {
 };
 
 const BlogPage = () => {
-   // const [numbers, setNumbers] = useState(0);
-   //
-   // useEffect(() => {
-   // let num = (window.innerHeight - 70) / 30;
-   // setNumbers(parseInt(num));
+   const [numbers, setNumbers] = useState(0);
 
-   // }, []);
+   useEffect(() => {
+      // el 30 es xq es un poco mas de la altura del eslabon en Anchore.js <Link >, asi NO llega hasta abajo, con 25 ( la altura de un eslabon ) llega justo hasta abajo
+      let num = (window.innerHeight - 70) / 25;
+      setNumbers(parseInt(num));
+   }, []);
 
    return (
       <MainContainer
@@ -47,7 +47,7 @@ const BlogPage = () => {
             <PowerButton />
             <SocialIcons />
 
-            {/* <AnchorComponent number={numbers}/> */}
+            <AnchorComponent number={numbers} />
 
             <Center>
                <Grid>
