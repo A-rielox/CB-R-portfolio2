@@ -1,18 +1,24 @@
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from './globalStyles';
-import { lightTheme, DarkTheme } from './components/Themes';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { lazy, Suspense } from 'react'; // 🥊
+import GlobalStyle from './globalStyles';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, DarkTheme } from './components/Themes';
+import Loading from "./subComponents/Loading"; // 🥊
 
-import Main from './components/Main';
-import AboutPage from './components/AboutPage';
-import BlogPage from './components/BlogPage';
-import WorkPage from './components/WorkPage';
-import MySkillsPage from './components/MySkillsPage';
-import SoundBar from './subComponents/SoundBar';
-
+// import Main from './components/Main';
+// import AboutPage from './components/AboutPage';
+// import BlogPage from './components/BlogPage';
+// import WorkPage from './components/WorkPage';
+// import MySkillsPage from './components/MySkillsPage';
+// import SoundBar from './subComponents/SoundBar';
+const Main = lazy(() => import('./components/Main'));
+const AboutPage = lazy(() => import('./components/AboutPage'));
+const MySkillsPage = lazy(() => import('./components/MySkillsPage'));
+const BlogPage = lazy(() => import('./components/BlogPage'));
+const WorkPage = lazy(() => import('./components/WorkPage'));
+const SoundBar = lazy(() => import('./subComponents/SoundBar'));
 /* 
-
 
 svg a react-component 28.45
 BlogPage 1.27.20 
@@ -20,7 +26,6 @@ Anchore.js 1.49.00
 About 2.23.17
 workPage 2.33.45
 bigTitle 2.59.00
-
 
 */
 
@@ -32,6 +37,7 @@ function App() {
          <GlobalStyle />
 
          <ThemeProvider theme={lightTheme}>
+         <Suspense fallback={<Loading />}> {/* 🥊 */}
             <SoundBar />
 
             <AnimatePresence exitBeforeEnter>
