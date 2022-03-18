@@ -31,14 +31,17 @@ const WorkPage = () => {
 
    useEffect(() => {
       let element = ref.current;
-      console.log(yinyang.current);
 
       const rotate = () => {
          element.style.transform = `translateX(${-window.pageYOffset}px)`;
 
-         // en el inline se ve "style='transform: rotate(-572.675deg);'"
-         return (yinyang.current.style.transform =
-            'rotate(' + -window.pageYOffset + 'deg)');
+         if (yinyang.current) {
+            // en el inline se ve "style='transform: rotate(-572.675deg);'"
+            return (yinyang.current.style.transform =
+               'rotate(' + -window.pageYOffset + 'deg)');
+         } else {
+            return;
+         }
       };
 
       window.addEventListener('scroll', rotate);
