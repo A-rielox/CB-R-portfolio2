@@ -9,6 +9,7 @@ import AboutPage from './components/AboutPage';
 import BlogPage from './components/BlogPage';
 import WorkPage from './components/WorkPage';
 import MySkillsPage from './components/MySkillsPage';
+import SoundBar from './subComponents/SoundBar';
 
 /* 
 
@@ -29,6 +30,8 @@ function App() {
          <GlobalStyle />
 
          <ThemeProvider theme={lightTheme}>
+            <SoundBar />
+
             <AnimatePresence exitBeforeEnter>
                <Switch location={location} key={location.pathname}>
                   <Route exact path="/" component={Main} />
