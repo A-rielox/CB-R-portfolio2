@@ -6,7 +6,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
-// import BigTitle from '../subComponents/BigTitlte'
+import BigTitle from '../subComponents/BigTitlte';
 import astronaut from '../assets/Images/spaceman.png';
 
 const AboutPage = () => {
@@ -33,7 +33,7 @@ const AboutPage = () => {
                consciousness in it. You can connect with me via social links.
             </Main>
 
-            {/* <BigTitle text="ABOUT" top="10%" left="5%" /> */}
+            <BigTitle text="ABOUT" top="10%" left="5%" />
          </Box>
       </ThemeProvider>
    );

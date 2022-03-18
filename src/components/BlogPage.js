@@ -9,7 +9,7 @@ import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import BlogComponent from './BlogComponent';
 import AnchorComponent from '../subComponents/Anchor';
-// import BigTitle from "../subComponents/BigTitlte"
+import BigTitle from '../subComponents/BigTitlte';
 
 // Framer-motion config
 const container = {
@@ -57,7 +57,7 @@ const BlogPage = () => {
                </Grid>
             </Center>
 
-            {/* <BigTitle text="BLOG" top="5rem" left="5rem" /> */}
+            <BigTitle text="BLOG" top="5rem" left="5rem" />
          </Container>
       </MainContainer>
    );

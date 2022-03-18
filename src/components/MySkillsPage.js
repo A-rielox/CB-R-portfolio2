@@ -7,7 +7,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
-// import BigTitle from '../subComponents/BigTitlte'
+import BigTitle from '../subComponents/BigTitlte';
 
 const MySkillsPage = () => {
    return (
@@ -64,7 +64,7 @@ const MySkillsPage = () => {
                </Description>
             </Main>
 
-            {/* <BigTitle text="SKILLS" top="80%" right="30%" /> */}
+            <BigTitle text="SKILLS" top="80%" right="30%" />
          </Box>
       </ThemeProvider>
    );

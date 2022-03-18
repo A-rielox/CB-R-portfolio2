@@ -6,11 +6,10 @@ import { Github } from '../components/AllSvgs';
 
 // Framer motion configuration
 const Item = {
-   hidden: {
-      scale: 0,
-   },
+   hidden: { scale: 0 },
    show: {
       scale: 1,
+
       transition: {
          type: 'spring',
          duration: 0.5,
