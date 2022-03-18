@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import { NavLink } from 'react-router-dom';
+// import React, { useState } from 'react';
+import { lazy, Suspense, useState } from 'react'; // 🥊
 import { motion } from 'framer-motion';
 
 import { YinYang } from './AllSvgs';
-import LogoComponent from '../subComponents/LogoComponent';
-import PowerButton from '../subComponents/PowerButton';
-import SocialIcons from '../subComponents/SocialIcons';
 import Intro from './Intro';
+import Loading from '../subComponents/Loading'; // 🥊
+// import { mediaQueries } from "./Themes"; //  🥊
+
+// import PowerButton from '../subComponents/PowerButton';
+// import SocialIcons from '../subComponents/SocialIcons';
+// import LogoComponent from '../subComponents/LogoComponent';
+const PowerButton = lazy(() => import('../subComponents/PowerButton'));
+const SocialIcons = lazy(() => import('./../subComponents/SocialIcons'));
+const LogoComponent = lazy(() => import('./../subComponents/LogoComponent'));
+
+const rotate = keyframes`
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+`;
 
 const Main = () => {
    const [click, setClick] = useState(false);
@@ -147,6 +163,8 @@ const MainContainer = styled.div`
       font-family: 'Karla', sans-serif;
       font-weight: 500;
    }
+
+   /* red red MEDIAQUERY red red */
 `;
 
 const Container = styled.div`
@@ -154,7 +172,9 @@ const Container = styled.div`
 `;
 
 const Contact = styled(NavLink)`
-   color: ${props => props.theme.text};
+   /* color: ${props => props.theme.text}; */
+   color: ${props =>
+      props.click ? props.theme.body : props.theme.text}; //  🥊
    position: absolute;
    top: 2rem;
    right: calc(1rem + 2vw);
@@ -163,13 +183,19 @@ const Contact = styled(NavLink)`
 `;
 
 const BLOG = styled(NavLink)`
-   color: ${props => props.theme.text};
+   /* color: ${props => props.theme.text}; */
+   color: ${props =>
+      props.click ? props.theme.body : props.theme.text}; //  🥊
    position: absolute;
    top: 50%;
    right: calc(1rem + 2vw);
    transform: rotate(90deg) translate(-50%, -50%);
    text-decoration: none;
    z-index: 1;
+
+   /* @media only screen and (max-width: 50em) { */
+   /* text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')}; */
+   /* } */
 `;
 
 const WORK = styled(NavLink)`
@@ -181,6 +207,10 @@ const WORK = styled(NavLink)`
    transform: translate(-50%, -50%) rotate(-90deg);
    text-decoration: none;
    z-index: 1;
+
+   /* @media only screen and (max-width: 50em) { */
+   /* text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')}; */
+   /* } */
 `;
 
 const BottomBar = styled.div`
@@ -203,15 +233,6 @@ const SKILLS = styled(NavLink)`
    color: ${props => props.theme.text};
    text-decoration: none;
    z-index: 1;
-`;
-
-const rotate = keyframes`
-    from{
-        transform: rotate(0);
-    }
-    to{
-        transform: rotate(360deg);
-    }
 `;
 
 const Center = styled.button`
@@ -238,6 +259,17 @@ const Center = styled.button`
       display: ${props => (props.click ? 'none' : 'inline-block')};
       padding-top: 1rem;
    }
+
+   /* @media only screen and (max-width: 50em) { */
+   /* top: ${props => (props.click ? '90%' : '50%')}; */
+   /* left: ${props => (props.click ? '90%' : '50%')}; */
+   /* width: ${props => (props.click ? '80px' : '150px')}; */
+   /* height: ${props => (props.click ? '80px' : '150px')}; */
+   /* } */
+   /* @media only screen and (max-width: 30em) { */
+   /* width: ${props => (props.click ? '40px' : '150px')}; */
+   /* height: ${props => (props.click ? '40px' : '150px')}; */
+   /* } */
 `;
 
 //en transition esta la lista de las cosas q cambian q son width y height
@@ -252,4 +284,6 @@ const DarkDiv = styled.div`
    width: ${props => (props.click ? '50%' : '0')};
    z-index: 1;
    transition: height 0.5s ease, width 1s ease 0.5s;
+
+   // red red MEDIAQUERY red red
 `;

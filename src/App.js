@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react'; // 🥊
 import GlobalStyle from './globalStyles';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, DarkTheme } from './components/Themes';
-import Loading from "./subComponents/Loading"; // 🥊
+import Loading from './subComponents/Loading'; // 🥊
 
 // import Main from './components/Main';
 // import AboutPage from './components/AboutPage';
@@ -37,18 +37,20 @@ function App() {
          <GlobalStyle />
 
          <ThemeProvider theme={lightTheme}>
-         <Suspense fallback={<Loading />}> {/* 🥊 */}
-            <SoundBar />
+            <Suspense fallback={<Loading />}>
+               {/* 🥊 */}
+               <SoundBar />
 
-            <AnimatePresence exitBeforeEnter>
-               <Switch location={location} key={location.pathname}>
-                  <Route exact path="/" component={Main} />
-                  <Route exact path="/about" component={AboutPage} />
-                  <Route exact path="/blog" component={BlogPage} />
-                  <Route exact path="/work" component={WorkPage} />
-                  <Route exact path="/skills" component={MySkillsPage} />
-               </Switch>
-            </AnimatePresence>
+               <AnimatePresence exitBeforeEnter>
+                  <Switch /* location={location} key={location.pathname} */>
+                     <Route exact path="/" component={Main} />
+                     <Route exact path="/about" component={AboutPage} />
+                     <Route exact path="/blog" component={BlogPage} />
+                     <Route exact path="/work" component={WorkPage} />
+                     <Route exact path="/skills" component={MySkillsPage} />
+                  </Switch>
+               </AnimatePresence>
+            </Suspense>
          </ThemeProvider>
       </>
    );
