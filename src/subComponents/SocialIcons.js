@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Github, Twitter, Facebook, YouTube } from '../components/AllSvgs';
-import { DarkTheme } from '../components/Themes';
+import { DarkTheme, mediaQueries } from '../components/Themes';
 import { motion } from 'framer-motion';
 
 const SocialIcons = props => {
@@ -108,7 +108,16 @@ const Icons = styled.div`
 
    & > *:not(:last-child) {
       margin: 0.5rem 0;
+
+      ${mediaQueries(20)`
+      margin: 0.3rem 0;`};
    }
+
+   ${mediaQueries(40)`
+   left: 1rem;
+   svg{
+      width:20px;
+      height:20px}`};
 `;
 
 const Line = styled(motion.span)`
