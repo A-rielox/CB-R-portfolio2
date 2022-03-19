@@ -1,17 +1,13 @@
 import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// import React, { useState } from 'react';
 import { lazy, Suspense, useState } from 'react'; // 🥊
 import { motion } from 'framer-motion';
 
 import { YinYang } from './AllSvgs';
 import Intro from './Intro';
 import Loading from '../subComponents/Loading'; // 🥊
-// import { mediaQueries } from "./Themes"; //  🥊
+import { mediaQueries } from './Themes'; //  🥊
 
-// import PowerButton from '../subComponents/PowerButton';
-// import SocialIcons from '../subComponents/SocialIcons';
-// import LogoComponent from '../subComponents/LogoComponent';
 const PowerButton = lazy(() => import('../subComponents/PowerButton'));
 const SocialIcons = lazy(() => import('./../subComponents/SocialIcons'));
 const LogoComponent = lazy(() => import('./../subComponents/LogoComponent'));
@@ -34,6 +30,7 @@ const Main = () => {
    const moveY = { y: '-100%' }; // 🥊
    const moveX = { x: `${path === 'work' ? '100%' : '-100%'}` }; // 🥊
    // work <--
+   const mq = window.matchMedia('(max-width: 50em)').matches;
 
    return (
       <Suspense fallback={<Loading />}>
@@ -52,56 +49,152 @@ const Main = () => {
 
                <LogoComponent theme={click ? 'dark' : 'light'} />
 
-               <SocialIcons theme={click ? 'dark' : 'light'} />
+               {mq ? (
+                  <SocialIcons theme="light" />
+               ) : (
+                  <SocialIcons theme={click ? 'dark' : 'light'} />
+               )}
 
                <Center click={click}>
-                  <YinYang
-                     onClick={() => handleClick()}
-                     width={click ? 120 : 200}
-                     height={click ? 120 : 200}
-                     fill="currentColor"
-                  />
+                  {mq ? (
+                     <YinYang
+                        onClick={() => handleClick()}
+                        width={click ? 80 : 150}
+                        height={click ? 80 : 150}
+                        fill="currentColor"
+                     />
+                  ) : (
+                     <YinYang
+                        onClick={() => handleClick()}
+                        width={click ? 120 : 200}
+                        height={click ? 120 : 200}
+                        fill="currentColor"
+                     />
+                  )}
                   <span>click here</span>
                </Center>
 
-               <Contact
-                  target="_blank"
-                  to={{ pathname: 'mailto:arielox.ag@gmail.com' }}
-               >
-                  <motion.h2
-                     initial={{
-                        y: -200,
-                        transition: { type: 'spring', duration: 1.5, delay: 1 },
-                     }}
-                     animate={{
-                        y: 0,
-                        transition: { type: 'spring', duration: 1.5, delay: 1 },
-                     }}
-                     whileHover={{ scale: 1.1 }}
-                     whileTap={{ scale: 0.9 }}
+               {mq ? (
+                  <Contact
+                     click={+click}
+                     target="_blank"
+                     to={{ pathname: 'mailto:codebucks27@gmail.com' }}
                   >
-                     Say Hi ✌
-                  </motion.h2>
-               </Contact>
-
-               <BLOG onClick={() => setpath('blog')} to="/blog">
-                  <motion.h2
-                     initial={{
-                        y: -200,
-                        transition: { type: 'spring', duration: 1.5, delay: 1 },
-                     }}
-                     animate={{
-                        y: 0,
-                        transition: { type: 'spring', duration: 1.5, delay: 1 },
-                     }}
-                     whileHover={{ scale: 1.1 }}
-                     whileTap={{ scale: 0.9 }}
+                     <motion.h3
+                        initial={{
+                           y: -200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        Say hi..
+                     </motion.h3>
+                  </Contact>
+               ) : (
+                  <Contact
+                     click={+false}
+                     target="_blank"
+                     to={{ pathname: 'mailto:codebucks27@gmail.com' }}
                   >
-                     Blog
-                  </motion.h2>
-               </BLOG>
+                     <motion.h3
+                        initial={{
+                           y: -200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        Say hi..
+                     </motion.h3>
+                  </Contact>
+               )}
 
-               <WORK to="/work" click={click}>
+               {mq ? (
+                  <BLOG
+                     click={+click}
+                     onClick={() => setpath('blog')}
+                     to="/blog"
+                  >
+                     <motion.h2
+                        initial={{
+                           y: -200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        Blog
+                     </motion.h2>
+                  </BLOG>
+               ) : (
+                  <BLOG
+                     click={+false}
+                     onClick={() => setpath('blog')}
+                     to="/blog"
+                  >
+                     <motion.h2
+                        initial={{
+                           y: -200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        Blog
+                     </motion.h2>
+                  </BLOG>
+               )}
+
+               <WORK to="/work" click={+click}>
                   <motion.h2
                      onClick={() => setpath('work')}
                      initial={{
@@ -120,7 +213,11 @@ const Main = () => {
                </WORK>
 
                <BottomBar>
-                  <ABOUT to="/about" click={click}>
+                  <ABOUT
+                     onClick={() => setClick(false)}
+                     click={mq ? +false : +click}
+                     to="/about"
+                  >
                      <motion.h2
                         onClick={() => setpath('about')}
                         initial={{
@@ -198,7 +295,13 @@ const MainContainer = styled(motion.div)`
       font-weight: 500;
    }
 
-   /* red red MEDIAQUERY red red */
+   h2 {
+      ${mediaQueries(40)`
+      font-size:1.2em;`};
+
+      ${mediaQueries(30)`
+      font-size:1em;`};
+   }
 `;
 
 const Container = styled.div`
@@ -227,9 +330,9 @@ const BLOG = styled(NavLink)`
    text-decoration: none;
    z-index: 1;
 
-   /* @media only screen and (max-width: 50em) { */
-   /* text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')}; */
-   /* } */
+   @media only screen and (max-width: 50em) {
+      text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')};
+   }
 `;
 
 const WORK = styled(NavLink)`
@@ -242,9 +345,9 @@ const WORK = styled(NavLink)`
    text-decoration: none;
    z-index: 1;
 
-   /* @media only screen and (max-width: 50em) { */
-   /* text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')}; */
-   /* } */
+   @media only screen and (max-width: 50em) {
+      text-shadow: ${props => (props.click ? '0 0 4px #000' : 'none')};
+   }
 `;
 
 const BottomBar = styled.div`
@@ -294,16 +397,16 @@ const Center = styled.button`
       padding-top: 1rem;
    }
 
-   /* @media only screen and (max-width: 50em) { */
-   /* top: ${props => (props.click ? '90%' : '50%')}; */
-   /* left: ${props => (props.click ? '90%' : '50%')}; */
-   /* width: ${props => (props.click ? '80px' : '150px')}; */
-   /* height: ${props => (props.click ? '80px' : '150px')}; */
-   /* } */
-   /* @media only screen and (max-width: 30em) { */
-   /* width: ${props => (props.click ? '40px' : '150px')}; */
-   /* height: ${props => (props.click ? '40px' : '150px')}; */
-   /* } */
+   @media only screen and (max-width: 50em) {
+      top: ${props => (props.click ? '90%' : '50%')};
+      left: ${props => (props.click ? '90%' : '50%')};
+      width: ${props => (props.click ? '80px' : '150px')};
+      height: ${props => (props.click ? '80px' : '150px')};
+   }
+   @media only screen and (max-width: 30em) {
+      width: ${props => (props.click ? '40px' : '150px')};
+      height: ${props => (props.click ? '40px' : '150px')};
+   }
 `;
 
 //en transition esta la lista de las cosas q cambian q son width y height
@@ -319,5 +422,14 @@ const DarkDiv = styled.div`
    z-index: 1;
    transition: height 0.5s ease, width 1s ease 0.5s;
 
-   // red red MEDIAQUERY red red
+   ${props =>
+      props.click
+         ? mediaQueries(50)`
+		height: 50%;
+		right:0;
+		width: 100%;
+		transition: width 0.5s ease, height 1s ease 0.5s;`
+         : mediaQueries(50)`
+		height: 0;
+		width: 0;`};
 `;
