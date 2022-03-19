@@ -7,7 +7,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
-import BigTitle from '../subComponents/BigTitlte';
+import BigTitle from '../subComponents/BigTitle';
 
 const MySkillsPage = () => {
    return (

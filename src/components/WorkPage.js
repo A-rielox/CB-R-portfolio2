@@ -1,16 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { DarkTheme } from './Themes';
 import { motion } from 'framer-motion';
+// import { useEffect, useRef } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 
-import LogoComponent from '../subComponents/LogoComponent';
-import SocialIcons from '../subComponents/SocialIcons';
-import PowerButton from '../subComponents/PowerButton';
-
-import { Work } from '../data/WorkData';
-import Card from '../subComponents/Card';
 import { YinYang } from './AllSvgs';
-import BigTitlte from '../subComponents/BigTitlte';
+import { Work } from '../data/WorkData';
+import { DarkTheme } from './Themes';
+
+import Card from '../subComponents/Card';
+import Loading from '../subComponents/Loading';
+
+// import LogoComponent from '../subComponents/LogoComponent';
+// import SocialIcons from '../subComponents/SocialIcons';
+// import PowerButton from '../subComponents/PowerButton';
+// import BigTitlte from '../subComponents/BigTitlte';
+const SocialIcons = lazy(() => import('../subComponents/SocialIcons'));
+const PowerButton = lazy(() => import('../subComponents/PowerButton'));
+const LogoComponent = lazy(() => import('../subComponents/LogoComponent'));
+const BigTitle = lazy(() => import('../subComponents/BigTitle'));
 
 // Framer motion configuration
 const container = {
@@ -53,35 +60,42 @@ const WorkPage = () => {
 
    return (
       <ThemeProvider theme={DarkTheme}>
-         <Box>
-            <LogoComponent theme="dark" />
-            <SocialIcons theme="dark" />
-            <PowerButton />
-
-            <Main
-               ref={ref}
-               variants={container}
-               initial="hidden"
-               animate="show"
+         <Suspense fallback={<Loading />}>
+            <Box
+               key="work"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1, transition: { duration: 1 } }}
+               exit={{ opacity: 0, transition: { duration: 0.5 } }}
             >
-               {Work.map(d => (
-                  <Card key={d.id} data={d} />
-               ))}
-            </Main>
+               <LogoComponent theme="dark" />
+               <SocialIcons theme="dark" />
+               <PowerButton />
 
-            <Rotate ref={yinyang}>
-               <YinYang width={80} height={80} fill={DarkTheme.text} />
-            </Rotate>
+               <Main
+                  ref={ref}
+                  variants={container}
+                  initial="hidden"
+                  animate="show"
+               >
+                  {Work.map(d => (
+                     <Card key={d.id} data={d} />
+                  ))}
+               </Main>
 
-            <BigTitlte text="WORK" top="10%" right="20%" />
-         </Box>
+               <Rotate ref={yinyang}>
+                  <YinYang width={80} height={80} fill={DarkTheme.text} />
+               </Rotate>
+
+               <BigTitle text="WORK" top="10%" right="20%" />
+            </Box>
+         </Suspense>
       </ThemeProvider>
    );
 };
 
 export default WorkPage;
 
-const Box = styled.div`
+const Box = styled(motion.div)`
    background-color: ${props => props.theme.body};
    height: 400vh;
    position: relative;

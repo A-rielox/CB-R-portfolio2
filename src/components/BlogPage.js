@@ -9,7 +9,7 @@ import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import BlogComponent from './BlogComponent';
 import AnchorComponent from '../subComponents/Anchor';
-import BigTitle from '../subComponents/BigTitlte';
+import BigTitle from '../subComponents/BigTitle';
 
 // Framer-motion config
 const container = {
