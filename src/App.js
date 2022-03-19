@@ -6,12 +6,6 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, DarkTheme } from './components/Themes';
 import Loading from './subComponents/Loading'; // 🥊
 
-// import Main from './components/Main';
-// import AboutPage from './components/AboutPage';
-// import BlogPage from './components/BlogPage';
-// import WorkPage from './components/WorkPage';
-// import MySkillsPage from './components/MySkillsPage';
-// import SoundBar from './subComponents/SoundBar';
 const Main = lazy(() => import('./components/Main'));
 const AboutPage = lazy(() => import('./components/AboutPage'));
 const MySkillsPage = lazy(() => import('./components/MySkillsPage'));
