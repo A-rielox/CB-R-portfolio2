@@ -29,86 +29,48 @@ const Main = () => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
 
+   const [path, setpath] = useState(''); // 🥊
+
+   const moveY = { y: '-100%' }; // 🥊
+   const moveX = { x: `${path === 'work' ? '100%' : '-100%'}` }; // 🥊
+   // work <--
+
    return (
-      <MainContainer>
-         <DarkDiv click={click} />
+      <Suspense fallback={<Loading />}>
+         <MainContainer
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            /* about abajo izq, skills abajo drch */
+            exit={path === 'about' || path === 'skills' ? moveY : moveX}
+            transition={{ duration: 0.5 }}
+         >
+            <DarkDiv click={click} />
 
-         <Container>
-            <PowerButton />
+            <Container>
+               <PowerButton />
 
-            <LogoComponent theme={click ? 'dark' : 'light'} />
+               <LogoComponent theme={click ? 'dark' : 'light'} />
 
-            <SocialIcons theme={click ? 'dark' : 'light'} />
+               <SocialIcons theme={click ? 'dark' : 'light'} />
 
-            <Center click={click}>
-               <YinYang
-                  onClick={() => handleClick()}
-                  width={click ? 120 : 200}
-                  height={click ? 120 : 200}
-                  fill="currentColor"
-               />
-               <span>click here</span>
-            </Center>
+               <Center click={click}>
+                  <YinYang
+                     onClick={() => handleClick()}
+                     width={click ? 120 : 200}
+                     height={click ? 120 : 200}
+                     fill="currentColor"
+                  />
+                  <span>click here</span>
+               </Center>
 
-            <Contact
-               target="_blank"
-               to={{ pathname: 'mailto:arielox.ag@gmail.com' }}
-            >
-               <motion.h2
-                  initial={{
-                     y: -200,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  animate={{
-                     y: 0,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+               <Contact
+                  target="_blank"
+                  to={{ pathname: 'mailto:arielox.ag@gmail.com' }}
                >
-                  Say Hi ✌
-               </motion.h2>
-            </Contact>
-
-            <BLOG to="/blog">
-               <motion.h2
-                  initial={{
-                     y: -200,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  animate={{
-                     y: 0,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-               >
-                  Blog
-               </motion.h2>
-            </BLOG>
-
-            <WORK to="/work" click={click}>
-               <motion.h2
-                  initial={{
-                     y: -200,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  animate={{
-                     y: 0,
-                     transition: { type: 'spring', duration: 1.5, delay: 1 },
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-               >
-                  Work
-               </motion.h2>
-            </WORK>
-
-            <BottomBar>
-               <ABOUT to="/about" click={click}>
                   <motion.h2
                      initial={{
-                        y: 200,
+                        y: -200,
                         transition: { type: 'spring', duration: 1.5, delay: 1 },
                      }}
                      animate={{
@@ -118,14 +80,14 @@ const Main = () => {
                      whileHover={{ scale: 1.1 }}
                      whileTap={{ scale: 0.9 }}
                   >
-                     About
+                     Say Hi ✌
                   </motion.h2>
-               </ABOUT>
+               </Contact>
 
-               <SKILLS to="/skills">
+               <BLOG onClick={() => setpath('blog')} to="/blog">
                   <motion.h2
                      initial={{
-                        y: 200,
+                        y: -200,
                         transition: { type: 'spring', duration: 1.5, delay: 1 },
                      }}
                      animate={{
@@ -135,20 +97,92 @@ const Main = () => {
                      whileHover={{ scale: 1.1 }}
                      whileTap={{ scale: 0.9 }}
                   >
-                     Skills
+                     Blog
                   </motion.h2>
-               </SKILLS>
-            </BottomBar>
-         </Container>
+               </BLOG>
 
-         {click ? <Intro click={click} /> : null}
-      </MainContainer>
+               <WORK to="/work" click={click}>
+                  <motion.h2
+                     onClick={() => setpath('work')}
+                     initial={{
+                        y: -200,
+                        transition: { type: 'spring', duration: 1.5, delay: 1 },
+                     }}
+                     animate={{
+                        y: 0,
+                        transition: { type: 'spring', duration: 1.5, delay: 1 },
+                     }}
+                     whileHover={{ scale: 1.1 }}
+                     whileTap={{ scale: 0.9 }}
+                  >
+                     Work
+                  </motion.h2>
+               </WORK>
+
+               <BottomBar>
+                  <ABOUT to="/about" click={click}>
+                     <motion.h2
+                        onClick={() => setpath('about')}
+                        initial={{
+                           y: 200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        About
+                     </motion.h2>
+                  </ABOUT>
+
+                  <SKILLS to="/skills">
+                     <motion.h2
+                        onClick={() => setpath('skills')}
+                        initial={{
+                           y: 200,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        animate={{
+                           y: 0,
+                           transition: {
+                              type: 'spring',
+                              duration: 1.5,
+                              delay: 1,
+                           },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                     >
+                        Skills
+                     </motion.h2>
+                  </SKILLS>
+               </BottomBar>
+            </Container>
+
+            {click ? <Intro click={click} /> : null}
+         </MainContainer>
+      </Suspense>
    );
 };
 
 export default Main;
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
    background: ${props => props.theme.body};
    width: 100vw;
    height: 100vh;

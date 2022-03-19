@@ -42,7 +42,7 @@ function App() {
                <SoundBar />
 
                <AnimatePresence exitBeforeEnter>
-                  <Switch /* location={location} key={location.pathname} */>
+                  <Switch location={location} key={location.pathname}>
                      <Route exact path="/" component={Main} />
                      <Route exact path="/about" component={AboutPage} />
                      <Route exact path="/blog" component={BlogPage} />
@@ -57,6 +57,8 @@ function App() {
 }
 
 export default App;
+
+// location={location} key={location.pathname} lo necesito junto con el animate presence, sino NO se anima la salida
 
 // useLocation
 // The useLocation hook returns the location object that represents the current URL. You can think about it like a useState that returns a new location whenever the URL changes.This could be really useful e.g. in a situation where you would like to trigger a new “page view” event using your web analytics tool whenever a new page loads, as in the following example:
