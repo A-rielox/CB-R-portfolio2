@@ -17,12 +17,12 @@ const SocialIcons = lazy(() => import('./../subComponents/SocialIcons'));
 const LogoComponent = lazy(() => import('./../subComponents/LogoComponent'));
 
 const rotate = keyframes`
-    from{
-        transform: rotate(0);
-    }
-    to{
-        transform: rotate(360deg);
-    }
+   from{
+      transform: rotate(0);
+   }
+   to{
+      transform: rotate(360deg);
+   }
 `;
 
 const Main = () => {
