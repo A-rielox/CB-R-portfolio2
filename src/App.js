@@ -13,8 +13,15 @@ const BlogPage = lazy(() => import('./components/BlogPage'));
 const WorkPage = lazy(() => import('./components/WorkPage'));
 const SoundBar = lazy(() => import('./subComponents/SoundBar'));
 /* 
-
-svg a react-component 28.45
+Main 20.40
+   svg a react-component 28.45
+   37.20 social icons
+   44.10 contact
+   46.30 blog link
+   50.10 bottom bar
+   53.30 logo centro
+   1.01.40 dark div
+   1.10.20 recuadro central
 BlogPage 1.27.20 
 Anchore.js 1.49.00
 About 2.23.17

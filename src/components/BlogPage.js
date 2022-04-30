@@ -81,7 +81,7 @@ const Container = styled.div`
    background-color: ${props => `rgba(${props.theme.bodyRgba},0.8)`};
    width: 100%;
    /* height: auto; */
-   min-height: calc(100vh - 5rem);
+   min-height: calc(100vh - 5rem); /* los 5rem del padding q pongo acá abajo */
 
    position: relative;
    padding-bottom: 5rem;
