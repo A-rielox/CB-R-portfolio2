@@ -79,6 +79,9 @@ const Image = styled.div`
    background-size: cover;
    border: 1px solid transparent;
    background-position: center center;
+   /* The background-position property sets the starting position of a background image.
+
+   Tip: By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally. */
 
    ${Box}:hover & {
       border: 1px solid ${props => props.theme.body};

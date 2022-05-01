@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Anchor, Link } from '../components/AllSvgs';
 
+// el props es la cantidad total de eslabones
 const AnchorComponent = props => {
    const ref = useRef(null);
    const hiddenRef = useRef(null);
@@ -19,7 +20,7 @@ const AnchorComponent = props => {
          // diff es lo q queda por ver de la pagina
          let diff = Math.max(bodyHeight - (scrollPosition + windowSize));
          //diff*100/scrollposition
-         // es el porcentaje respecto al ( documento - una pantalla )
+         // es el porcentaje de lo q queda, respecto a lo escroleable en la página ( .../( documento - una pantalla )) ( CUANTO POR CIENTO QUEDA POR ESCROLEAR )
          let diffP = (diff * 100) / (bodyHeight - windowSize);
 
          // ⭐ devuelve a la vista la cadena
@@ -82,6 +83,7 @@ const Slider = styled.div`
    transform: translateY(-100%);
 
    .chain {
+      /* este es xq el eslabón originalmente está inclinado */
       transform: rotate(135deg);
    }
 `;

@@ -31,7 +31,8 @@ const BlogPage = () => {
    const [numbers, setNumbers] = useState(0);
 
    useEffect(() => {
-      // el 30 es xq es un poco mas de la altura del eslabon en Anchore.js <Link >, asi NO llega hasta abajo, con 25 ( la altura de un eslabon ) llega justo hasta abajo
+      // el 30 es xq es un poco mas de la altura del eslabon en Anchore.js <Link >, asi NO llega hasta abajo, con 25 ( la altura de un eslabon ) llega justo hasta abajo, 70 es la altura del ancla
+      // ES EL NUMERO TOTAL DE ESLABONES A COLOCAR
       let num = (window.innerHeight - 70) / 25;
       setNumbers(parseInt(num));
    }, []);

@@ -23,7 +23,8 @@ Main 20.40
    1.01.40 dark div
    1.10.20 recuadro central
 BlogPage 1.27.20 
-Anchore.js 1.49.00
+   Anchore.js 1.49.00
+MySkills 2.04.10
 About 2.23.17
 workPage 2.33.45
 bigTitle 2.59.00
