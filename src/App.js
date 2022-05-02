@@ -29,6 +29,9 @@ About 2.23.17
 workPage 2.33.45
 bigTitle 2.59.00
 
+para la particles funciona con los mismos archivos de config sacados de 
+"https://vincentgarreau.com/particles.js/"
+
 */
 
 function App() {
